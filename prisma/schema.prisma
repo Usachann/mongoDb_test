@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongodb"]
+}
+
+model User {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  firsname String?
+  lastname String?
+  email    String  @unique
+  skills   Json?
+}
+
+// model Order {
+//   id String @id @default(auto()) @map("_id") @db.ObjectId
+// }
+
+// model Post {
+//   id        String @id @default(auto()) @map("_id") @db.ObjectId
+//   title     String
+//   body      String 
+// }
+
+// model Movie {
+//   id        String @id @default(auto()) @map("_id") @db.ObjectId
+//   title     String
+//   director  String
+//   year      Int
+//   genres    String[]
+//   rating    Float?
+//   duration  Duration?
+//   reviews   Review[]
+// }
+
+// model Review {
+//   id        String @id @default(auto()) @map("_id") @db.ObjectId
+//   name  String
+//   text  String
+// }
+
+// model Duration {
+//   id        String @id @default(auto()) @map("_id") @db.ObjectId
+//   hours    Int
+//   minutes  Int
+// }
